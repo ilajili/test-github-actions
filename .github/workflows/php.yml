@@ -7,8 +7,9 @@
     test:
       runs-on: ubuntu-18.04
       steps:
-        - name: Get the version
-          run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-        - name: Test
-          run: |
-              echo $RELEASE_VERSION
+        - uses: actions/checkout@v2
+        - uses: pocket-apps/action-update-version@v1
+          with:
+            files: 'version.json'
+            version-regexp: '\d+.\d+.\d+'
+            repo-token: ${{ secrets.GITHUB_TOKEN }}
