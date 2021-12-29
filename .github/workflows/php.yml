@@ -4,13 +4,13 @@
       tags:
         - "v*"
   jobs:
-    test:
-      runs-on: ubuntu-18.04
+    write-version:
+      runs-on: ubuntu-latest
+      name: Write Version to File
       steps:
-        - uses: actions/checkout@v2
-        - name: Update Files Version Field
-          uses: pocket-apps/action-update-version@v1
+        - uses: actions/checkout@master
+        - name: Update version
+          uses: brettdorrans/write-version-to-file@master
           with:
-            files: 'version.json'
-            version-regexp: '\d+.\d+.\d+'
-            repo-token: ${{ secrets.GITHUB_TOKEN }}
+            filename: '/.VERSION'
+            placeholder: '${VERSION}'
