@@ -8,7 +8,8 @@
       runs-on: ubuntu-18.04
       steps:
         - uses: actions/checkout@v2
-        - uses: pocket-apps/action-update-version@v1
+        - name: Update Files Version Field
+          uses: pocket-apps/action-update-version@v1
           with:
             files: 'version.json'
             version-regexp: '\d+.\d+.\d+'
