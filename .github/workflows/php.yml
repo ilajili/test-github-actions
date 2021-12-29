@@ -1,4 +1,4 @@
-  name: release test
+  name: release tag test
   on:
     push:
       tags:
