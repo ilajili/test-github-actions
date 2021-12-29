@@ -14,3 +14,4 @@
           with:
             filename: 'version.json'
             placeholder: 'version'
+            repo-token: ${{ secrets.GITHUB_TOKEN }}
