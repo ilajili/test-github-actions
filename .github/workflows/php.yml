@@ -4,12 +4,9 @@
       tags:
         - "v*"
   jobs:
-    tagged-release:
-      name: "Tagged Release"
-      runs-on: "ubuntu-latest"
-
+    test:
+      runs-on: ubuntu-18.04
       steps:
-        # ...
-        - name: "Build & test"
-          run: |
-            echo "done!"
+        - name: Get the version
+          id: get_version
+          run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
