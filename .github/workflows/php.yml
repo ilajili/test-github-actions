@@ -8,5 +8,8 @@
       runs-on: ubuntu-18.04
       steps:
         - name: Get the version
-          id: get_version
-          run : echo ${{ github.event.release.tag_name }}
+          run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        - name: Test
+          run: |
+             echo $RELEASE_VERSION
+             echo ${{ env.RELEASE_VERSION }}
