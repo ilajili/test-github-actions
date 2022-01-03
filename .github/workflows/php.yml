@@ -13,7 +13,7 @@
           uses: brettdorrans/write-version-to-file@master
           with:
             filename: 'Config.php'
-            placeholder: '${VERSION}'
+            placeholder: '${'VERSION'}'
 
         - name: push changes to main
           run: |
