@@ -13,7 +13,7 @@
           uses: brettdorrans/write-version-to-file@master
           with:
             filename: 'version.json'
-            placeholder: '${VERSION}'
+            placeholder: '${version}'
 
         - name: push changes to main
           run: |
