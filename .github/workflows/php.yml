@@ -12,8 +12,8 @@
         - name: Update version
           uses: brettdorrans/write-version-to-file@master
           with:
-            filename: 'version.json'
-            placeholder: '${vtag}'
+            filename: '.VERSION'
+            placeholder: '${VERSION}'
 
         - name: push changes to main
           run: |
