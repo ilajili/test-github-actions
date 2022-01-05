@@ -12,8 +12,8 @@
         - name: Update version
           uses: brettdorrans/write-version-to-file@master
           with:
-            filename: 'Config.php'
-            placeholder: '${'VERSION'}'
+            filename: 'version.json'
+            placeholder: '${VERSION}'
 
         - name: push changes to main
           run: |
