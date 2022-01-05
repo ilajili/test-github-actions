@@ -34,3 +34,9 @@
           run: |
             echo  $RELEASE_VERSION
             echo version.json > ${{ env.RELEASE_VERSION }}
+            git config --global user.email "ilajili@payplug.com"
+            git config --global user.name "ilajili"
+            git remote set-url origin https://github.com/ilajili/test-github-actions.git
+            git add .
+            git commit -m "update version"
+            git push origin HEAD:main
