@@ -28,12 +28,13 @@
     test:
       runs-on: ubuntu-18.04
       steps:
+        - uses: actions/checkout@master
         - name: Get the version
           run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
         - name: Test
           run: |
             echo  $RELEASE_VERSION
-            echo version.json > ${{ env.RELEASE_VERSION }}
+            echo ${{ env.RELEASE_VERSION }} > .VERSION
             git config --global user.email "ilajili@payplug.com"
             git config --global user.name "ilajili"
             git remote set-url origin https://github.com/ilajili/test-github-actions.git
