@@ -3,29 +3,38 @@
     push:
       tags:
         - "*"
-#  jobs:
-#    write-version:
-#      runs-on: ubuntu-latest
-#      name: Write Version to File
-#      steps:
-#        - uses: actions/checkout@master
-#        - name: Update version
-#          uses: brettdorrans/write-version-to-file@master
-#          with:
-#            filename: '.VERSION'
-#            placeholder: '${VERSION}'
-#
-#        - name: push changes to main
-#          run: |
-#            git config --global user.email "ilajili@payplug.com"
-#            git config --global user.name "ilajili"
-#            git remote set-url origin https://github.com/ilajili/test-github-actions.git
-#            git add .
-#            git commit -m "update version"
-#            git push origin HEAD:main
 
   jobs:
-    test:
+    tests_unit:
+
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          php-versions: [ '7.3', '7.4', '8.0' ]
+          phpunit-versions: [ '8.5.15' ]
+          include:
+            - php-versions: '5.6'
+              phpunit-versions: '5.7.27'
+            - php-versions: '7.0'
+              phpunit-versions: '6.5.14'
+
+      name: Php Version ${{matrix.php-versions }} / php Unit ${{ matrix.phpunit-versions }}
+      steps:
+        - uses: actions/checkout@v2
+
+        - name: Setup PHP with PECL extension
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: ${{ matrix.php-versions }}
+            tools: phpunit:${{ matrix.phpunit-versions }}
+
+        - name: php version
+          run: php -v
+
+        - name: Run test suite
+          run: phpunit  --configuration tests/
+
+    release:
       runs-on: ubuntu-18.04
       steps:
         - uses: actions/checkout@master
@@ -42,11 +51,3 @@
             git add .
             git commit -m "[Automated Release Action]"
             git push origin HEAD:main
-#            echo  $RELEASE_VERSION
-#            sed -i 's/"version": "*.*"/"version": "${{ env.RELEASE_VERSION }}"/' version.json
-#            git config --global user.email "ilajili@payplug.com"
-#            git config --global user.name "ilajili"
-#            git remote set-url origin https://github.com/ilajili/test-github-actions.git
-#            git add .
-#            git commit -m "update version"
-#            git push origin HEAD:main
