@@ -36,6 +36,8 @@
 
     release:
       runs-on: ubuntu-18.04
+      needs: tests_unit
+      if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
       steps:
         - uses: actions/checkout@master
           with:
