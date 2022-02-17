@@ -1,4 +1,4 @@
-  name: release tag test
+  name: release tag test for demo
   on:
     push:
       tags:
