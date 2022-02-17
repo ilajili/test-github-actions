@@ -29,7 +29,7 @@
       runs-on: ubuntu-18.04
       steps:
         - uses: actions/checkout@master
-        - with:
+          with:
               token: ${{ secrets.GITHUB_TOKEN}}
         - name: Fetch library version
           run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
