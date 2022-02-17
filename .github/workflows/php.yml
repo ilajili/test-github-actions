@@ -32,7 +32,7 @@
           run: php -v
 
         - name: Run test suite
-          run: phpunit  --configuration tests/
+          run: phpunit  --configuration phpunit.xml
 
     release:
       runs-on: ubuntu-18.04
