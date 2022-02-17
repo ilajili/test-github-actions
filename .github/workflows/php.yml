@@ -29,15 +29,24 @@
       runs-on: ubuntu-18.04
       steps:
         - uses: actions/checkout@master
-        - name: Get the version
+        - with:
+              token: ${{ secrets.GITHUB_TOKEN}}
+        - name: Fetch library version
           run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-        - name: Test
+        - name: Apply new version from tag
           run: |
             echo  $RELEASE_VERSION
-            sed -i 's/"version": "*.*"/"version": "${{ env.RELEASE_VERSION }}"/' version.json
-            git config --global user.email "ilajili@payplug.com"
-            git config --global user.name "ilajili"
-            git remote set-url origin https://github.com/ilajili/test-github-actions.git
+            sed -i "s/LIBRARY_VERSION = '*.*'/LIBRARY_VERSION = '${{ env.RELEASE_VERSION }}'/" Config.php
+            git config user.email actions@github.com
+            git config user.name "GitHub Actions"
             git add .
-            git commit -m "update version"
+            git commit -m "[Automated Release Action]"
             git push origin HEAD:main
+#            echo  $RELEASE_VERSION
+#            sed -i 's/"version": "*.*"/"version": "${{ env.RELEASE_VERSION }}"/' version.json
+#            git config --global user.email "ilajili@payplug.com"
+#            git config --global user.name "ilajili"
+#            git remote set-url origin https://github.com/ilajili/test-github-actions.git
+#            git add .
+#            git commit -m "update version"
+#            git push origin HEAD:main

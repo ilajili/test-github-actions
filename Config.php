@@ -5,6 +5,6 @@
  */
 class Config
 {
-    const VERSION = '3.5.3';
+    const LIBRARY_VERSION = '3.5.3';
 
 }
