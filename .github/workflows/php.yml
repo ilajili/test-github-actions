@@ -1,4 +1,4 @@
-  name: release tag test for demo
+  name: release tag test for payplug-lib demo
   on:
     push:
       tags:
