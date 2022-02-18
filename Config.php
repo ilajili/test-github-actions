@@ -5,6 +5,6 @@
  */
 class Config
 {
-    const LIBRARY_VERSION = '3.5.6';
+    const LIBRARY_VERSION = '4.5.6';
 
 }
